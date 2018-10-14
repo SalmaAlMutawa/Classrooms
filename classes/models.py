@@ -25,6 +25,6 @@ class Student(models.Model):
 		(Male, 'MALE'),
 		(Female, 'FEMALE'),
 	)
-	gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default=Male)
+	gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
 	classroom = models.ForeignKey(Classroom, default=1, on_delete=models.CASCADE)
-	exam_grade = models.IntegerField()
+	exam_grade = models.FloatField()
