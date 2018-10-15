@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+import requests
 
 from .models import Classroom ,Student
 from .forms import ClassroomForm, SignupForm, SigninForm, StudentForm
@@ -157,3 +158,13 @@ def student_delete(request, classroom_id, student_id):
 	student = Student.objects.get(id=student_id).delete()
 	messages.success(request, "Successfully Deleted!")
 	return redirect('classroom-detail', classroom_id)
+
+def test_api(request):
+	url = "http://api.github.com/events"
+	url = "http://api.github.com/repos/joinCODED/task_13/events"
+
+	response = requests.get(url)
+	context = {
+		"response" : response.json(),
+	}
+	return render (request, 'api.html', context)
